@@ -129,6 +129,14 @@ class LinkedList
     new_node.set_link(before_new.get_link)
     before_new.set_link(new_node)
   end
+
+  def remove_at(index)
+    return puts "Index is out of range" if index > size - 1 || index < 0
+    return pop if @tail == at(index)
+    return @head = at(index + 1) if @head == at(index)
+
+    at(index - 1).set_link(at(index + 1))
+  end
 end
 
 class Node
@@ -152,44 +160,47 @@ class Node
 end
 
 list = LinkedList.new
-# list.append(5)
-# list.append(6)
-# list.prepend(4)
-# list.prepend(3)
-# list.append(7)
 
-# puts "LinkedList nodes:"
-# puts list.to_s
-
-# puts "Total number of nodes:"
-# puts list.size
-
-# puts "Head value:"
-# puts list.head.get_value
-
-# puts "Tail value:"
-# puts list.tail.get_value
-
-# puts "Node at given index:"
-# p list.at(3)
-
-# list.pop
-# puts "Last element popped."
-# puts list.to_s
-
-# puts "Is it contains 2?"
-# puts list.contains(2)
-
-# puts "Index of 5:"
-# p list.find(5)
-
+puts "Appending 2, 6, then prepending 4, 3, then appending 7:"
+list.append(2)
+list.append(6)
+list.prepend(4)
+list.prepend(3)
+list.append(7)
+puts "LinkedList nodes:"
 puts list.to_s
-puts "Insert 2 to index 3"
-list.insert_at(2, 0)
-list.insert_at(1, 0)
-list.insert_at(3, 2)
-puts list.to_s
-
+puts
+puts "Total number of nodes:"
+puts list.size
+puts
+puts "Head value:"
 puts list.head.get_value
+puts
+puts "Tail value:"
 puts list.tail.get_value
+puts
+puts "Node at index 3:"
+p list.at(3)
+puts
+list.pop
+puts "Last element popped."
+puts list.to_s
+puts
+puts "Is the list contains 2?"
+puts list.contains(2)
+puts
+puts "Index of 4:"
+p list.find(4)
+puts
+puts "Inserting 8 to index 1"
+puts "Inserting 11 to index 50"
+puts "Inserting 5 to index 0"
+list.insert_at(8, 1)
+list.insert_at(11, 50)
+list.insert_at(5, 0)
+puts list.to_s
+puts
+puts "Remove index 5"
+list.remove_at(5)
+puts list.to_s
 
